@@ -16,8 +16,11 @@ export class DashboardComponent implements OnInit {
   constructor(private httpClient: AuthService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    // Date du jour
     const currentDate = new Date();
+    // Date du début
     const minDate = new Date(new Date().setMonth(2));
+    // Méthode pour récupérer les informations de l'API
     this.httpClient.getRequest<Data>(
       UrlApi.commandRecurrence,
       this.datePipe.transform(minDate, 'yyyy-MM-dd')!,

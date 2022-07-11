@@ -23,6 +23,7 @@ export class AuthService {
   // Avec Kévin
   getRequest<T>(url: string, dateMin: string, dateMax: string): Observable<T> {
     const token: string|null = localStorage.getItem(UrlApi.keyTokenJWT);
+    // headers => autorisations
     let headers = undefined;
     if (token) {
       headers = {
@@ -36,6 +37,7 @@ export class AuthService {
     params = params.append('min_date', dateMin);
     params = params.append('max_date', dateMax);
 
+    // Retourne le résultat
     return this._httpClient.get<T>(url, {
       headers: headers,
       params: params,
